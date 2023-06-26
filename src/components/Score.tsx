@@ -43,7 +43,10 @@ export default function Score({ score }: any) {
           </>
         ) : (
           <Text>
-            😔 You must score <span className="font-semibold">at least 8</span>{' '}
+            😔 You must score{' '}
+            <span className="font-semibold">
+              at least {QUESTION_CONFIG.minCorrect}
+            </span>{' '}
             to get an ice cream 😔
           </Text>
         )}
