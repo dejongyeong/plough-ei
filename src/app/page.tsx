@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main className={design}>
       <div className="max-[480px]:m-5 max-[768px]:w-11/12 max-[1024px]:w-4/5 min-[1025px]:w-2/4">
-        {!showScore ? (
+        {showScore ? (
           <Score score={score} />
         ) : (
           <Questions setScore={setScore} setShowScore={setShowScore} />

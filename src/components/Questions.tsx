@@ -39,7 +39,7 @@ export default function Questions({ setScore, setShowScore }: any) {
   return (
     <>
       <div className="mb-3 text-neutral-600 text-sm">
-        Question {currentQ + 1} of {questions.length}.
+        Question {currentQ + 1} of {questions.length}
       </div>
       <div className="flex flex-col gap-y-5 bg-white p-6 shadow-xl rounded-md">
         <div>
