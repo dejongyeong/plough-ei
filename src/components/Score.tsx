@@ -1,3 +1,5 @@
+'use client';
+
 import { v4 as uuidv4 } from 'uuid';
 import { useQRCode } from 'next-qrcode';
 import { Typography, Button } from 'antd';
@@ -9,7 +11,7 @@ const fail = 'Oops, please try again!';
 
 const { Title, Text } = Typography;
 
-export default function Score({ score }: any) {
+export function Score({ score }: any) {
   const { SVG } = useQRCode();
   const uuid = uuidv4();
 
@@ -22,7 +24,6 @@ export default function Score({ score }: any) {
         >
           {score >= QUESTION_CONFIG.minCorrect ? success : fail}
         </Title>
-
         <Text type="secondary">
           Score: <span className="font-bold text-custom-color">{score}</span>{' '}
           out of{' '}
@@ -30,7 +31,6 @@ export default function Score({ score }: any) {
             {QUESTION_CONFIG.total}
           </span>
         </Text>
-
         {score >= QUESTION_CONFIG.minCorrect ? (
           <>
             <Text>

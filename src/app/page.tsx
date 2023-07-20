@@ -1,25 +1,28 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import Questions from '@/components/Questions';
-import Score from '@/components/Score';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { Questions } from '@/components/Questions';
+import { Score } from '@/components/Score';
+import { Users } from '@/components/Users';
+import { Toaster, toast } from 'sonner';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false); // handle flash of unstyled content
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => setMounted(true), []);
   const design = !mounted
     ? 'invisible'
-    : 'visible bg-gradient-to-b from-sky-100 to-sky-700';
+    : 'visible bg-gradient-to-b from-sky-100 to-sky-700 p-5';
 
   return (
     <main className={design}>
-      <div className=" h-screen flex flex-col items-center justify-center ">
-        <div className="max-[480px]:m-5 max-[768px]:w-11/12 max-[1024px]:w-4/5 min-[1025px]:w-2/4 ">
+      <Toaster />
+      <div className="min-h-screen flex flex-col items-center justify-center ">
+        <div className="container max-w-xl">
           <Image
             src="/ei-logo.png"
             alt="Enterprise Ireland Logo"
@@ -28,10 +31,12 @@ export default function Home() {
             className="mb-16"
           />
 
-          {showScore ? (
+          {showForm ? (
+            <Users setShowScore={setShowScore} setShowForm={setShowForm} />
+          ) : showScore ? (
             <Score score={score} />
           ) : (
-            <Questions setScore={setScore} setShowScore={setShowScore} />
+            <Questions setScore={setScore} setShowForm={setShowForm} />
           )}
         </div>
       </div>

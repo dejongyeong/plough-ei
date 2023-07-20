@@ -1,9 +1,11 @@
+'use client';
+
 import { Button, Radio } from 'antd';
 import { useState } from 'react';
 
 import questions from '../lib/questions.json';
 
-export default function Questions({ setScore, setShowScore }: any) {
+export function Questions({ setScore, setShowForm }: any) {
   const [currentQ, setCurrentQ] = useState(0);
   const [selected, setSelected]: any = useState([]);
 
@@ -33,7 +35,7 @@ export default function Questions({ setScore, setShowScore }: any) {
     }, 0);
 
     setScore(newScore);
-    setShowScore(true);
+    setShowForm(true);
   };
 
   return (
