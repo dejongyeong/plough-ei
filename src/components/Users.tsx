@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Button, Form, Input, message } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { schema } from '@/lib/validations/schema';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Toaster, toast } from 'sonner';
+import { addUser } from '@/app/actions/user';
 
 interface IProps {
   name: string;
@@ -17,21 +18,17 @@ const yupSync = {
   },
 };
 
+const message = 'Thank you for your participation. Have a nice day!';
+
 export function Users({ setShowScore, setShowForm }: any) {
   const [isPending, startTransition] = React.useTransition();
 
   const onFinish = ({ name, phone }: IProps) => {
     startTransition(async () => {
       try {
-        await fetch('api/users', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: name, phone: phone }),
-        });
+        await addUser({ name, phone });
+        toast.success(message);
 
-        toast.success(
-          'Congratulations. Please scan the QR code to retrieve your ice cream'
-        );
         setShowScore(true);
         setShowForm(false);
       } catch (error) {
@@ -42,7 +39,7 @@ export function Users({ setShowScore, setShowForm }: any) {
 
   return (
     <>
-      <Toaster richColors closeButton />
+      <Toaster richColors />
       <div className="w-full flex flex-col gap-y-7 bg-white p-6 shadow-xl rounded-md">
         <div className="">Please enter your name and phone below:</div>
         <div className="container">
