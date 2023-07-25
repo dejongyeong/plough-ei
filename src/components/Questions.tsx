@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import questions from '../lib/questions.json';
 
-export function Questions({ setScore, setShowForm }: any) {
+export function Questions({ setScore, setShowScore }: any) {
   const [currentQ, setCurrentQ] = useState(0);
   const [selected, setSelected]: any = useState([]);
 
@@ -35,12 +35,12 @@ export function Questions({ setScore, setShowForm }: any) {
     }, 0);
 
     setScore(newScore);
-    setShowForm(true);
+    setShowScore(true);
   };
 
   return (
     <>
-      <div className="mb-3 text-neutral-600 text-sm">
+      <div className="mb-3 text-neutral-700 text-sm">
         Question {currentQ + 1} of {questions.length}
       </div>
       <div className="flex flex-col gap-y-5 bg-white p-6 shadow-xl rounded-md">

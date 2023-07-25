@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Enterprise Ireland Ploughing Championships',
-  description: 'Enterprise Ireland Ploughing Championships MCQ Application',
+  title: 'Engineers Ireland Ploughing Championships',
+  description: 'Engineers Ireland Ploughing Championships MCQ Application',
 };
 
 export default function RootLayout({

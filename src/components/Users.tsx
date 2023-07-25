@@ -10,6 +10,7 @@ import { addUser } from '@/app/actions/user';
 interface IProps {
   name: string;
   phone: string;
+  email: string;
 }
 
 const yupSync = {
@@ -20,17 +21,16 @@ const yupSync = {
 
 const message = 'Thank you for your participation. Have a nice day!';
 
-export function Users({ setShowScore, setShowForm }: any) {
+export function Users({ score, setShowSVG }: any) {
   const [isPending, startTransition] = React.useTransition();
 
-  const onFinish = ({ name, phone }: IProps) => {
+  const onFinish = ({ name, phone, email }: IProps) => {
     startTransition(async () => {
       try {
-        await addUser({ name, phone });
+        await addUser({ name, phone, email });
         toast.success(message);
 
-        setShowScore(true);
-        setShowForm(false);
+        setShowSVG(true);
       } catch (error) {
         toast.error('Something went wrong. Please reload and try again.');
       }
@@ -40,16 +40,19 @@ export function Users({ setShowScore, setShowForm }: any) {
   return (
     <>
       <Toaster richColors />
-      <div className="w-full flex flex-col gap-y-7 bg-white p-6 shadow-xl rounded-md">
-        <div className="">Please enter your name and phone below:</div>
-        <div className="container">
+      <div className="w-full flex flex-col gap-y-7 bg-white py-2">
+        <div className="container mt-3">
           <Form name="basic" layout="vertical" onFinish={onFinish}>
             <Form.Item label="Full Name" name="name" required rules={[yupSync]}>
-              <Input />
+              <Input placeholder="John Doe" />
+            </Form.Item>
+
+            <Form.Item label="Email" name="email" required rules={[yupSync]}>
+              <Input placeholder="johndoe@gmail.com" />
             </Form.Item>
 
             <Form.Item label="Phone" name="phone" required rules={[yupSync]}>
-              <Input />
+              <Input placeholder="0834567223" />
             </Form.Item>
 
             <Form.Item>

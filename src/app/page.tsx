@@ -3,15 +3,17 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Questions } from '@/components/Questions';
-import { Score } from '@/components/Score';
-import { Users } from '@/components/Users';
-import { Toaster, toast } from 'sonner';
+import { Toaster } from 'sonner';
+import { QUESTION_CONFIG } from '@/lib/constant';
+import { Incorrect } from '@/components/Incorrect';
+import { Correct } from '@/components/Correct';
+import { Svg } from '@/components/Svg';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false); // handle flash of unstyled content
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showSVG, setShowSVG] = useState(false);
 
   useEffect(() => setMounted(true), []);
   const design = !mounted
@@ -23,20 +25,27 @@ export default function Home() {
       <Toaster />
       <div className="min-h-screen flex flex-col items-center justify-center ">
         <div className="container max-w-xl">
-          <Image
-            src="/ei-logo.png"
-            alt="Enterprise Ireland Logo"
-            width={250}
-            height={250}
-            className="mb-16"
-          />
+          <div className="flex justify-center mb-12">
+            <Image
+              src="/ei-logo.svg"
+              alt="Engineers Ireland Logo"
+              width={300}
+              height={256}
+            />
+          </div>
 
-          {showForm ? (
-            <Users setShowScore={setShowScore} setShowForm={setShowForm} />
-          ) : showScore ? (
-            <Score score={score} />
+          {showScore ? (
+            score >= QUESTION_CONFIG.minCorrect ? (
+              showSVG ? (
+                <Svg />
+              ) : (
+                <Correct score={score} setShowSVG={setShowSVG} />
+              )
+            ) : (
+              <Incorrect score={score} />
+            )
           ) : (
-            <Questions setScore={setScore} setShowForm={setShowForm} />
+            <Questions setScore={setScore} setShowScore={setShowScore} />
           )}
         </div>
       </div>

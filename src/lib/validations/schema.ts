@@ -9,4 +9,5 @@ export const schema = yup.object().shape({
       /^([0-9]{9,10})$/,
       'Phone number must be in the format of 83xxxxxxx or 083xxxxxxx'
     ),
+  email: yup.string().email().required(),
 });
