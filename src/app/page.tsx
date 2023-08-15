@@ -15,7 +15,7 @@ export default function Home() {
   const [mounted, setMounted] = useState(false); // handle flash of unstyled content
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [showSVG, setShowSVG] = useState(true); // todo: change this to false
+  const [showSVG, setShowSVG] = useState(false);
 
   useEffect(() => setMounted(true), []);
   const design = !mounted
@@ -33,6 +33,7 @@ export default function Home() {
     const search = current.toString();
     const query = search ? `?${search}` : '';
     router.push(`${pathname}${query}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
