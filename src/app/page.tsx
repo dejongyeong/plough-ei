@@ -25,10 +25,16 @@ export default function Home() {
       <Toaster />
       <div className="min-h-screen flex flex-col items-center justify-center ">
         <div className="container max-w-xl">
-          <div className="flex justify-center mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-12 items-center">
             <Image
               src="/ei-logo.svg"
               alt="Engineers Ireland Logo"
+              width={300}
+              height={256}
+            />
+            <Image
+              src="/reedi-logo.svg"
+              alt="REEdI Logo"
               width={300}
               height={256}
             />
