@@ -31,12 +31,14 @@ export default function Home() {
               alt="Engineers Ireland Logo"
               width={300}
               height={256}
+              priority
             />
             <Image
               src="/reedi-logo.svg"
               alt="REEdI Logo"
               width={300}
               height={256}
+              priority
             />
           </div>
 
