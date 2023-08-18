@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import Providers from './providers';
+
 import './globals.css';
 
 export const metadata = {
@@ -27,7 +30,35 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>{children}</body>
+      <body id="app">
+        <Providers>
+          <div className="flex flex-col items-center min-h-screen p-5">
+            <div className="container max-w-xl">
+              <div className="flex items-center justify-center mt-3 mb-5 gap-1">
+                <div>
+                  <Image
+                    src="/ei-logo.png"
+                    alt="Engineers Ireland Logo"
+                    width={300}
+                    height={256}
+                    priority
+                  />
+                </div>
+                <div>
+                  <Image
+                    src="/reedi-logo.svg"
+                    alt="REEdI Logo"
+                    width={300}
+                    height={256}
+                    priority
+                  />
+                </div>
+              </div>
+              {children}
+            </div>
+          </div>
+        </Providers>
+      </body>
     </html>
   );
 }

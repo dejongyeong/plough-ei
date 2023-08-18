@@ -1,13 +1,14 @@
 import * as yup from 'yup';
 
 export const schema = yup.object().shape({
-  name: yup.string().required('Please input your full name.'),
-  phone: yup
+  name: yup.string().required('Please enter your full name.'),
+  email: yup.string().email().required('Please enter your email.'),
+  job: yup
     .string()
-    .required('Please input your phone number.')
-    .matches(
-      /^([0-9]{9,10})$/,
-      'Phone number must be in the format of 83xxxxxxx or 083xxxxxxx'
+    .required(
+      'Please select either Third-Level Engineering Student or Professional.'
     ),
-  email: yup.string().email().required(),
+  isMember: yup.boolean().default(false),
+  isInterested: yup.boolean().default(true),
+  agree: yup.boolean().default(true),
 });

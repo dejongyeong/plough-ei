@@ -2,18 +2,31 @@
 
 import { prisma } from '@/lib/prisma';
 
-interface IProps {
+interface AddUserProps {
   name: string;
-  phone: string;
   email: string;
+  job: string;
+  isMember: boolean;
+  isInterested: boolean;
+  agree: boolean;
 }
 
-export async function addUser({ name, phone, email }: IProps) {
+export async function addUser({
+  name,
+  email,
+  job,
+  isMember,
+  isInterested,
+  agree,
+}: AddUserProps) {
   await prisma.user.create({
     data: {
       name: name,
-      phone: phone,
       email: email,
+      profession: job,
+      is_member: isMember,
+      is_interested: isInterested,
+      future_communication: agree,
     },
   });
 }

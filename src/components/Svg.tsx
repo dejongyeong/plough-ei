@@ -17,25 +17,22 @@ export function Svg({ pathname }: { pathname: string }) {
   const code = `${appUrl}${pathname}?coupon=${coupon}`;
 
   return (
-    <div className="w-full flex flex-col gap-y-2 bg-white p-6 shadow-xl rounded-md">
+    <div className="w-full flex flex-col gap-y-2 bg-white p-6 shadow-xl rounded-md text-center">
       {coupon ? (
         <div className="flex flex-col px-6 mt-2 space-y-2">
-          <Title level={2} type="success">
-            Here is your ticket 🍦
+          <Title level={3} type="success">
+            Congratulations!🎉
           </Title>
-          <Text className="text-gray-500">
-            Scan to retrieve your ice cream before pressing the restart button
+          <Text>
+            Here is your ticket. Please scan this QR code to retrieve your ice
+            cream🍦before clicking on the exit button.
           </Text>
           <div className="flex align-middle justify-center">
             <SVG text={code} options={{ width: 270 }} />
           </div>
           <div className="flex align-middle justify-center mt-4 ">
-            <Button
-              type="primary"
-              onClick={() => window.location.reload()}
-              className="bg-custom-color hover:bg-hover-color"
-            >
-              Restart
+            <Button type="default" onClick={() => window.location.reload()}>
+              Exit
             </Button>
           </div>
         </div>
@@ -50,12 +47,14 @@ function Error() {
   return (
     <div className="flex flex-col px-6 mt-2 space-y-2">
       <div className="mb-5">
-        <Title level={2} type="danger">
-          Error
+        <Title level={3} type="danger">
+          Application Error
         </Title>
-        <Text className="text-gray-500">
+        <Text>
           We are unable to generate the QR code due to the application error.
-          Please Try again.
+          Unfortunately, we would have to reload the application. Please click
+          on the reload button and we will refresh the application and try
+          again.
         </Text>
       </div>
       <div className="flex align-middle justify-center mt-4 ">
@@ -64,7 +63,7 @@ function Error() {
           onClick={() => window.location.reload()}
           className="bg-custom-color hover:bg-hover-color"
         >
-          Restart
+          Reload
         </Button>
       </div>
     </div>
