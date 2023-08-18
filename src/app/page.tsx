@@ -6,11 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { QUESTION_CONFIG } from '@/lib/constant';
 
-import { Questions } from '../components/Questions';
-import { Welcome } from '../components/welcome';
-import { Svg } from '../components/svg';
-import { Incorrect } from '../components/incorrect';
-import { Gdpr } from '../components/gdpr';
+import { Questions } from '@/components/Questions';
+import { Welcome } from '@/components/welcome';
+import { Svg } from '@/components/svg';
+import { Incorrect } from '@/components/incorrect';
+import { Gdpr } from '@/components/gdpr';
 
 export default function Home() {
   const [profession, setProfession] = useState(null);
