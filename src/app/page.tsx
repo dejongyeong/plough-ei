@@ -3,12 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
+
 import { Questions } from '@/components/Questions';
 import { QUESTION_CONFIG } from '@/lib/constant';
-import { Incorrect } from '@/components/incorrect';
 import { Svg } from '@/components/svg';
 import { Welcome } from '@/components/welcome';
 import { Gdpr } from '@/components/gdpr';
+import { Incorrect } from '@/components/incorrect';
 
 export default function Home() {
   const [profession, setProfession] = useState(null);
@@ -42,6 +43,13 @@ export default function Home() {
   //   }
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
+
+  // import { DateTime } from 'luxon';
+  // console.log(
+  //   JSON.stringify(
+  //     DateTime.now().setZone('Europe/Dublin').toFormat('yyyy-MM-dd HH:mm:ss')
+  //   )
+  // );
 
   // Todo: check if else statement and questions, set timer for re-answering the questions
   if (!profession) {
