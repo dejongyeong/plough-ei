@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Questions } from '@/components/Questions';
 import { QUESTION_CONFIG } from '@/lib/constant';
-import { Svg } from '@/components/svg';
+
+import { Questions } from '@/components/Questions';
 import { Welcome } from '@/components/welcome';
-import { Gdpr } from '@/components/gdpr';
+import { Svg } from '@/components/svg';
 import { Incorrect } from '@/components/incorrect';
+import { Gdpr } from '@/components/gdpr';
 
 export default function Home() {
   const [profession, setProfession] = useState(null);
