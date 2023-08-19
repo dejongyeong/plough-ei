@@ -53,7 +53,7 @@ export default function Home() {
   //   )
   // );
 
-  // Todo: check if else statement and questions, set timer for re-answering the questions
+  // Todo: check set timer for re-answering the questions
   if (!profession) {
     return <Welcome setProfession={setProfession} />;
   } else {

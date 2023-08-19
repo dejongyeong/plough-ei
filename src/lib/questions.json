@@ -7,6 +7,14 @@
     ]
   },
   {
+    "question": "In total, how many accredited Engineering courses are available to third level students in Ireland?",
+    "answerOptions": [
+      { "answer": "10" },
+      { "answer": "50" },
+      { "answer": "246", "isCorrect": true }
+    ]
+  },
+  {
     "question": "How many Members does Engineers Ireland currently have?",
     "answerOptions": [
       { "answer": "5,000" },
@@ -15,11 +23,34 @@
     ]
   },
   {
-    "question": "In total, how many accredited Engineering courses are available to third level students in Ireland?",
+    "question": "The Chartered Engineer title is a recognised title that allows one to work in how many countries?",
+    "answerOptions": [
+      { "answer": "10" },
+      { "answer": "20" },
+      { "answer": "Internationally", "isCorrect": true }
+    ]
+  },
+  {
+    "question": "What is the name of Engineers Ireland’s Robot?",
+    "answerOptions": [
+      { "answer": "Eng-E", "isCorrect": true },
+      { "answer": "Wall-E" },
+      { "answer": "Rob-E" }
+    ]
+  },
+  {
+    "question": "How many free or discounted events does Engineers Ireland offer each year as part of their Training Programme?",
     "answerOptions": [
       { "answer": "10" },
       { "answer": "50" },
-      { "answer": "246", "isCorrect": true }
+      { "answer": "500", "isCorrect": true }
+    ]
+  },
+  {
+    "question": "Engineers Ireland is the sole authority to award the title of Chartered Engineer in Ireland?",
+    "answerOptions": [
+      { "answer": "True", "isCorrect": true },
+      { "answer": "False" }
     ]
   }
 ]

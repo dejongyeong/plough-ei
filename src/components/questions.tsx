@@ -1,13 +1,56 @@
 'use client';
 
 import { Button, Radio } from 'antd';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import seedrandom from 'seedrandom';
 
 import questions from '../lib/questions.json';
+
+interface Question {
+  question: string;
+  answerOptions: { answer: string; isCorrect?: boolean }[];
+}
+
+// Fisher-Yates shuffle algorithm, also known as Knuth shuffle
+// O(n) time complexity, O(n) space complexity
+function seededShuffle<T>(array: T[], rng: seedrandom.PRNG): T[] {
+  const shuffled = [...array];
+  let currentIndex = shuffled.length;
+
+  while (currentIndex > 0) {
+    const randomIndex = Math.floor(rng() * currentIndex);
+    currentIndex--;
+
+    [shuffled[currentIndex], shuffled[randomIndex]] = [
+      shuffled[randomIndex],
+      shuffled[currentIndex],
+    ];
+  }
+
+  return shuffled;
+}
+
+function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
+  const dayOfYear = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate()
+  ).getTime();
+
+  const rng = seedrandom(`${dayOfYear}`);
+  const shuffled = seededShuffle(questions, rng);
+
+  return shuffled.slice(0, 3);
+}
 
 export function Questions({ setScore, setShowScore }: any) {
   const [currentQ, setCurrentQ] = useState(0);
   const [selected, setSelected]: any = useState([]);
+
+  const selectedQs = useMemo(
+    () => selectQuestionsForDay(questions, new Date()),
+    []
+  );
 
   const handlePrevious = () => {
     const prevQ = currentQ - 1;
@@ -16,7 +59,7 @@ export function Questions({ setScore, setShowScore }: any) {
 
   const handleNext = () => {
     const nextQ = currentQ + 1;
-    nextQ < questions.length && setCurrentQ(nextQ);
+    nextQ < selectedQs.length && setCurrentQ(nextQ);
   };
 
   const handleOptions = (event: any) => {
@@ -26,7 +69,7 @@ export function Questions({ setScore, setShowScore }: any) {
   };
 
   const handleSubmit = () => {
-    const newScore = questions.reduce((score, question, index): any => {
+    const newScore = selectedQs.reduce((score, question, index): any => {
       const selectedAnswer = selected[index]?.answerByUser;
       const isCorrect = question.answerOptions.some(
         (answer) => answer.isCorrect && answer.answer === selectedAnswer
@@ -41,12 +84,12 @@ export function Questions({ setScore, setShowScore }: any) {
   return (
     <>
       <div className="mb-3 text-neutral-700 text-sm">
-        Question {currentQ + 1} of {questions.length}
+        Question {currentQ + 1} of {selectedQs.length}
       </div>
       <div className="flex flex-col gap-y-5 bg-white p-6 shadow-xl rounded-md">
         <div>
           <h1 className="text-xl font-semibold">
-            {questions[currentQ].question}
+            {selectedQs[currentQ].question}
           </h1>
         </div>
         <Radio.Group
@@ -54,7 +97,7 @@ export function Questions({ setScore, setShowScore }: any) {
           value={selected[currentQ]?.answerByUser || undefined}
           onChange={handleOptions}
         >
-          {questions[currentQ].answerOptions.map((answer, index) => (
+          {selectedQs[currentQ].answerOptions.map((answer, index) => (
             <Radio key={index} name={answer.answer} value={answer.answer}>
               {answer.answer}
             </Radio>
@@ -71,13 +114,13 @@ export function Questions({ setScore, setShowScore }: any) {
           </Button>
           <Button
             type="primary"
-            disabled={currentQ + 1 < questions.length ? false : true}
+            disabled={currentQ + 1 < selectedQs.length ? false : true}
             onClick={handleNext}
             className="w-full bg-custom-color hover:bg-hover-color"
           >
             Next
           </Button>
-          {selected.length === questions.length ? (
+          {selected.length === selectedQs.length ? (
             <Button
               type="primary"
               onClick={handleSubmit}
