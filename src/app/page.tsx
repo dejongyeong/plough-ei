@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { QUESTION_CONFIG } from '@/lib/constant';
 
-import { Questions } from '@/components/Questions';
+import { Questions } from '@/components/questions';
 import { Welcome } from '@/components/welcome';
 import { Svg } from '@/components/svg';
 import { Incorrect } from '@/components/incorrect';
@@ -20,8 +20,9 @@ export default function Home() {
 
   // user already been saved to database
   // const [isSaved, setIsSaved] = useState(false);
+  const [storedValue, setStoredValue] = useState<any>(null);
 
-  const [showSVG, setShowSVG] = useState(false);
+  // const [showSVG, setShowSVG] = useState(false);
 
   const uuid = uuidv4();
   const router = useRouter();
@@ -37,13 +38,13 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined' && window.localStorage) {
-  //     const value = localStorage.getItem('plough-ei');
-  //     if (value) setIsSaved(true);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const value = localStorage.getItem('plough-ei');
+      if (value) setStoredValue(JSON.parse(value));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // import { DateTime } from 'luxon';
   // console.log(
@@ -90,7 +91,12 @@ export default function Home() {
           return <Questions setScore={setScore} setShowScore={setShowScore} />;
         }
       } else {
-        return <Gdpr setShowQuestion={setShowQuestion} />;
+        // only collect user data once - assumption based on device
+        if (storedValue?.collected) {
+          setShowQuestion(true);
+        } else {
+          return <Gdpr setShowQuestion={setShowQuestion} />;
+        }
       }
     }
   }

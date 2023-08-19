@@ -35,9 +35,12 @@ export function Gdpr({ setShowQuestion }: GdprProps) {
 
         // set cookie so that for user who want to try again
         // we doesn't have to save the data again
-        // localStorage.setItem('plough-ei', JSON.stringify({
-
-        // }));
+        localStorage.setItem(
+          'plough-ei',
+          JSON.stringify({
+            collected: true,
+          })
+        );
 
         setShowQuestion(true);
       } catch (error) {
