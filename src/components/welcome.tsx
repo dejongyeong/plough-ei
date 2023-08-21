@@ -51,6 +51,11 @@ export function Welcome({ setProfession }: WelcomeProps) {
               <span className="sr-only">Continue</span>
             </Button>
           </Form.Item>
+
+          <p className="text-xs text-blue-600">
+            We recommend not to reload/refresh the browser/platform during the
+            quiz.
+          </p>
         </Form>
       </div>
     </div>

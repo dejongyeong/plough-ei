@@ -28,19 +28,13 @@ export function Gdpr({ setShowQuestion }: GdprProps) {
   const onFinish = (data: any) => {
     startTransition(async () => {
       try {
-        // Todo: uncomment this, set timer to retry
-        // await addUser({ ...data });
+        await addUser({ ...data });
 
         toast.success(`Let's quiz`);
 
         // set cookie so that for user who want to try again
         // we doesn't have to save the data again
-        localStorage.setItem(
-          'plough-ei',
-          JSON.stringify({
-            collected: true,
-          })
-        );
+        localStorage.setItem('plough-ei', JSON.stringify({ quiz: true }));
 
         setShowQuestion(true);
       } catch (error) {
@@ -184,7 +178,7 @@ export function Gdpr({ setShowQuestion }: GdprProps) {
             {isPending && (
               <LoadingOutlined className="mr-2 h-4 w-4" aria-hidden="true" />
             )}
-            Submit
+            {isPending ? 'Submitting' : 'Submit'}
             <span className="sr-only">Submit</span>
           </Button>
         </Form.Item>

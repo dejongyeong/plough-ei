@@ -19,10 +19,7 @@ export default function Home() {
   const [score, setScore] = useState(0);
 
   // user already been saved to database
-  // const [isSaved, setIsSaved] = useState(false);
   const [storedValue, setStoredValue] = useState<any>(null);
-
-  // const [showSVG, setShowSVG] = useState(false);
 
   const uuid = uuidv4();
   const router = useRouter();
@@ -46,14 +43,6 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // import { DateTime } from 'luxon';
-  // console.log(
-  //   JSON.stringify(
-  //     DateTime.now().setZone('Europe/Dublin').toFormat('yyyy-MM-dd HH:mm:ss')
-  //   )
-  // );
-
-  // Todo: check set timer for re-answering the questions
   if (!profession) {
     return <Welcome setProfession={setProfession} />;
   } else {
@@ -91,8 +80,8 @@ export default function Home() {
           return <Questions setScore={setScore} setShowScore={setShowScore} />;
         }
       } else {
-        // only collect user data once - assumption based on device
-        if (storedValue?.collected) {
+        // only collect user data once and hide form - assumption based on device
+        if (storedValue?.quiz) {
           setShowQuestion(true);
         } else {
           return <Gdpr setShowQuestion={setShowQuestion} />;
@@ -101,17 +90,3 @@ export default function Home() {
     }
   }
 }
-
-// if(isSaved) {
-//   if(showScore) {
-//     if(score >= QUESTION_CONFIG.minCorrect) {
-//       return <Svg pathname={pathname} />;
-//     } else {
-//       return <Incorrect score={score} />;
-//     }
-//   } else {
-//     return <Questions setScore={setScore} setShowScore={setShowScore} />;
-//   }
-// } else {
-//   return <Gdpr setShowQuestion={setShowQuestion} />;
-// }
