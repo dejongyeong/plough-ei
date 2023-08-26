@@ -30,8 +30,13 @@ export function Svg({ pathname }: { pathname: string }) {
           <div className="flex align-middle justify-center">
             <SVG text={code} options={{ width: 270 }} />
           </div>
-          <div className="flex align-middle justify-center mt-4 ">
-            <Button type="default" onClick={() => window.location.reload()}>
+          <Text className="text-blue-500 mt-3">Have a nice day!</Text>
+          <div className="flex align-middle justify-center">
+            <Button
+              type="default"
+              className="mt-4"
+              onClick={() => window.location.reload()}
+            >
               Exit
             </Button>
           </div>

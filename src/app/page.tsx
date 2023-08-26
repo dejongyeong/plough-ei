@@ -14,7 +14,7 @@ import { Gdpr } from '@/components/gdpr';
 
 export default function Home() {
   const [profession, setProfession] = useState(null);
-  const [showQuestion, setShowQuestion] = useState(false);
+  const [showSvg, setShowSvg] = useState(false);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
 
@@ -46,46 +46,38 @@ export default function Home() {
   if (!profession) {
     return <Welcome setProfession={setProfession} />;
   } else {
-    if (profession === 'student') {
-      if (showScore) {
-        if (score >= QUESTION_CONFIG.minCorrect) {
+    if (!showScore) {
+      return (
+        <Questions
+          profession={profession}
+          setScore={setScore}
+          setShowScore={setShowScore}
+          isStored={storedValue?.quiz}
+        />
+      );
+    } else {
+      if (score >= QUESTION_CONFIG.minCorrect) {
+        if (profession === 'student') {
           return <Svg pathname={pathname} />;
         } else {
-          return (
-            <Incorrect
-              score={score}
-              setScore={setScore}
-              setShowScore={setShowScore}
-            />
-          );
-        }
-      } else {
-        return <Questions setScore={setScore} setShowScore={setShowScore} />;
-      }
-    } else {
-      if (showQuestion) {
-        if (showScore) {
-          if (score >= QUESTION_CONFIG.minCorrect) {
+          if (storedValue?.quiz) {
             return <Svg pathname={pathname} />;
           } else {
-            return (
-              <Incorrect
-                score={score}
-                setScore={setScore}
-                setShowScore={setShowScore}
-              />
-            );
+            if (showSvg) {
+              return <Svg pathname={pathname} />;
+            } else {
+              return <Gdpr setShowSvg={setShowSvg} />; // only collect user data once and hide form - assumption based on device
+            }
           }
-        } else {
-          return <Questions setScore={setScore} setShowScore={setShowScore} />;
         }
       } else {
-        // only collect user data once and hide form - assumption based on device
-        if (storedValue?.quiz) {
-          setShowQuestion(true);
-        } else {
-          return <Gdpr setShowQuestion={setShowQuestion} />;
-        }
+        return (
+          <Incorrect
+            score={score}
+            setScore={setScore}
+            setShowScore={setShowScore}
+          />
+        );
       }
     }
   }

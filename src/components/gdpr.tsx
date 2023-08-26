@@ -4,7 +4,16 @@ import * as React from 'react';
 import { schema } from '@/lib/validations/schema';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Typography } from 'antd';
-import { Button, Form, Switch, Input, Radio, Space, Checkbox } from 'antd';
+import {
+  Button,
+  Form,
+  Switch,
+  Input,
+  Radio,
+  Space,
+  Checkbox,
+  Popconfirm,
+} from 'antd';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { addUser } from '@/app/actions/user';
@@ -18,10 +27,10 @@ const yupSync = {
 };
 
 interface GdprProps {
-  setShowQuestion: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSvg: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function Gdpr({ setShowQuestion }: GdprProps) {
+export function Gdpr({ setShowSvg }: GdprProps) {
   const [form] = Form.useForm();
   const [isPending, startTransition] = React.useTransition();
 
@@ -30,13 +39,13 @@ export function Gdpr({ setShowQuestion }: GdprProps) {
       try {
         await addUser({ ...data });
 
-        toast.success(`Let's quiz`);
+        toast.success(`Thank you for your participation. Have a nice day!`);
 
         // set cookie so that for user who want to try again
         // we doesn't have to save the data again
         localStorage.setItem('plough-ei', JSON.stringify({ quiz: true }));
 
-        setShowQuestion(true);
+        setShowSvg(true);
       } catch (error) {
         toast.error('Something went wrong. Please reload and try again.');
       }
@@ -161,14 +170,20 @@ export function Gdpr({ setShowQuestion }: GdprProps) {
         </Form.Item>
 
         <Form.Item>
-          <Button
-            type="default"
-            htmlType="button"
-            className="mr-2"
-            onClick={() => window.location.reload()}
+          <Popconfirm
+            title="Quit Quiz"
+            description="Are you sure to cancel this quiz?"
+            placement="bottomLeft"
+            okButtonProps={{
+              className: 'bg-red-600 hover:!bg-red-500 mt-1.5',
+            }}
+            onConfirm={() => window.location.reload()}
           >
-            Cancel
-          </Button>
+            <Button type="default" htmlType="button" className="mr-2">
+              Cancel
+            </Button>
+          </Popconfirm>
+
           <Button
             type="primary"
             htmlType="submit"

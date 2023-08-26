@@ -5,6 +5,8 @@ import { useMemo, useState } from 'react';
 import seedrandom from 'seedrandom';
 
 import questions from '../lib/questions.json';
+import { QUESTION_CONFIG } from '@/lib/constant';
+import { toast } from 'sonner';
 
 interface Question {
   question: string;
@@ -43,7 +45,19 @@ function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
   return shuffled.slice(0, 3);
 }
 
-export function Questions({ setScore, setShowScore }: any) {
+interface QuestionsProps {
+  profession: string;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+  setShowScore: React.Dispatch<React.SetStateAction<boolean>>;
+  isStored: boolean;
+}
+
+export function Questions({
+  profession,
+  setScore,
+  setShowScore,
+  isStored,
+}: QuestionsProps) {
   const [currentQ, setCurrentQ] = useState(0);
   const [selected, setSelected]: any = useState([]);
 
@@ -76,6 +90,13 @@ export function Questions({ setScore, setShowScore }: any) {
       );
       return score + (isCorrect ? 1 : 0);
     }, 0);
+
+    if (
+      newScore >= QUESTION_CONFIG.minCorrect &&
+      (profession === 'student' || isStored)
+    ) {
+      toast.success('Thank you for your participation. Have a nice day!');
+    }
 
     setScore(newScore);
     setShowScore(true);

@@ -47,7 +47,7 @@ export function Incorrect({ score, setShowScore, setScore }: IncorrectProps) {
         <Button
           type="default"
           onClick={() => {
-            toast.success('Thank you for your participation.');
+            toast.success('Thank you for your participation. Have a nice day!');
             window.location.reload();
           }}
           className="ml-2"
