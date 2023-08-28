@@ -42,7 +42,7 @@ function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
   const rng = seedrandom(`${dayOfYear}`);
   const shuffled = seededShuffle(questions, rng);
 
-  return shuffled.slice(0, 3);
+  return shuffled.slice(0, QUESTION_CONFIG.total);
 }
 
 interface QuestionsProps {
