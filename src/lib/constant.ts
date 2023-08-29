@@ -1,4 +1,4 @@
 export const QUESTION_CONFIG = {
-  total: 6,
+  total: 8,
   minCorrect: 6,
 };

@@ -28,9 +28,10 @@ export function Incorrect({ score, setShowScore, setScore }: IncorrectProps) {
           </span>
         </Text>
         <Text>
-          You must score all questions correctly in order to retrieve your ice
-          cream ticket. Click on the retry to button to try again or exit the
-          platform.
+          You must answer{' '}
+          <span className="font-medium underline">6 or more</span> questions
+          correctly in order to retrieve your ice cream ticket. Click on the
+          retry to button to try again or exit the platform.
         </Text>
       </div>
       <div className="flex align-middle justify-start mt-6 ml-6">

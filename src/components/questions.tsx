@@ -40,9 +40,27 @@ function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
   ).getTime();
 
   const rng = seedrandom(`${dayOfYear}`);
-  const shuffled = seededShuffle(questions, rng);
+  const shuffled = seededShuffle(questions, rng).slice(0, 6);
 
-  return shuffled.slice(0, QUESTION_CONFIG.total);
+  return [
+    ...shuffled,
+    {
+      question: 'What does the acronym REEdI stand for?',
+      answerOptions: [
+        { answer: 'Realigning Engineering Education in Ireland' },
+        {
+          answer: 'Rethinking Engineering Education in Ireland',
+          isCorrect: true,
+        },
+        { answer: 'Reimagining Engineering Education in Ireland' },
+      ],
+    },
+    {
+      question:
+        'The REEdI BEng Honours Degree in Mechanical and Manufacturing Engineering is offered by MTU Kerry, Campus?',
+      answerOptions: [{ answer: 'True', isCorrect: true }, { answer: 'False' }],
+    },
+  ];
 }
 
 interface QuestionsProps {
