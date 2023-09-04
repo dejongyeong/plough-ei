@@ -40,7 +40,7 @@ function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
   ).getTime();
 
   const rng = seedrandom(`${dayOfYear}`);
-  const shuffled = seededShuffle(questions, rng).slice(0, 6);
+  const shuffled = seededShuffle(questions, rng).slice(0, 5);
 
   return [
     ...shuffled,
@@ -54,11 +54,6 @@ function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
         },
         { answer: 'Reimagining Engineering Education in Ireland' },
       ],
-    },
-    {
-      question:
-        'The REEdI BEng Honours Degree in Mechanical and Manufacturing Engineering is offered by MTU Kerry, Campus?',
-      answerOptions: [{ answer: 'True', isCorrect: true }, { answer: 'False' }],
     },
   ];
 }

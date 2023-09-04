@@ -74,7 +74,7 @@ export function Gdpr({ setShowSvg }: GdprProps) {
           <Input placeholder="johndoe@gmail.com" />
         </Form.Item>
 
-        <Form.Item label="I am a/an:" name="job" required rules={[yupSync]}>
+        <Form.Item label="I am a:" name="job" required rules={[yupSync]}>
           <Radio.Group>
             <Space direction="vertical">
               <Radio value={'third level engineering student'}>
@@ -119,27 +119,7 @@ export function Gdpr({ setShowSvg }: GdprProps) {
           </Form.Item>
         </div>
 
-        <div className="my-3">
-          <Text>
-            By entering this competition, I agree to be contacted by Engineers
-            Ireland to receive a QR code to allow me to avail of my prize. This
-            data will be processed only for the purposes of the competition and
-            not further processed. The data will be deleted one month after the
-            competition ends unless you express below your desire to receive
-            further communication from Engineers Ireland by providing your
-            consent. I understand that I can learn more about how you protect my
-            personal data and how I can exercise my rights on{' '}
-            <Link
-              href="https://www.engineersireland.ie/Privacy-Policy"
-              target="_blank"
-            >
-              https://www.engineersireland.ie/Privacy-Policy
-            </Link>
-            .
-          </Text>
-        </div>
-
-        <div className="flex gap-3 items-start justify-between my-1">
+        <div className="flex gap-4 items-start justify-between mt-4 mb-2">
           <Form.Item
             name="agree"
             valuePropName="checked"
@@ -148,22 +128,29 @@ export function Gdpr({ setShowSvg }: GdprProps) {
           >
             <Checkbox />
           </Form.Item>
-          <Text strong>
+          <Text>
             I agree to receive future communication from Engineers Ireland in
             relation to their services:
           </Text>
         </div>
 
         <Form.Item>
-          <Text>
-            If I would like to withdraw my consent for the above, I can let
-            Engineers Ireland know by contacting you using the contact
-            information in the{' '}
+          <Text className="!leading-relaxed">
+            If you would like to withdraw your consent, please contact Engineers
+            Ireland via{' '}
             <Link
               href="https://www.engineersireland.ie/Privacy-Policy"
               target="_blank"
             >
               Engineers Ireland Privacy Notice
+            </Link>
+            . You can also learn more about how you protect your personal data
+            and how you can exercise your rights here:{' '}
+            <Link
+              href="https://www.engineersireland.ie/Privacy-Policy"
+              target="_blank"
+            >
+              https://www.engineersireland.ie/Privacy-Policy
             </Link>
             .
           </Text>
