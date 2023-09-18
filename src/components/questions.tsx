@@ -47,12 +47,18 @@ function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
     {
       question: 'What does the acronym REEdI stand for?',
       answerOptions: [
-        { answer: 'Realigning Engineering Education in Ireland' },
+        {
+          answer: 'Realigning Engineering Education in Ireland',
+          isCorrect: true,
+        },
         {
           answer: 'Rethinking Engineering Education in Ireland',
           isCorrect: true,
         },
-        { answer: 'Reimagining Engineering Education in Ireland' },
+        {
+          answer: 'Reimagining Engineering Education in Ireland',
+          isCorrect: true,
+        },
       ],
     },
   ];
