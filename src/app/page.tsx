@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState, Suspense } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
-import { QUESTION_CONFIG } from '@/lib/constant';
+import { QUESTION_CONFIG } from "@/lib/constant";
 
-import { Questions } from '@/components/questions';
-import { Welcome } from '@/components/welcome';
-import { Svg } from '@/components/svg';
-import { Incorrect } from '@/components/incorrect';
-import { Gdpr } from '@/components/gdpr';
+import { Questions } from "@/components/questions";
+import { Welcome } from "@/components/welcome";
+import { Svg } from "@/components/svg";
+import { Incorrect } from "@/components/incorrect";
+import { Gdpr } from "@/components/gdpr";
 
-export default function Home() {
+function HomeContent() {
   const [profession, setProfession] = useState(null);
   const [showSvg, setShowSvg] = useState(false);
   const [showScore, setShowScore] = useState(false);
@@ -28,16 +28,16 @@ export default function Home() {
 
   useEffect(() => {
     const current = new URLSearchParams(Array.from(searchParams.entries()));
-    current.set('coupon', uuid);
+    current.set("coupon", uuid);
     const search = current.toString();
-    const query = search ? `?${search}` : '';
+    const query = search ? `?${search}` : "";
     router.push(`${pathname}${query}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const value = localStorage.getItem('plough-ei');
+    if (typeof window !== "undefined" && window.localStorage) {
+      const value = localStorage.getItem("plough-ei");
       if (value) setStoredValue(JSON.parse(value));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +57,7 @@ export default function Home() {
       );
     } else {
       if (score >= QUESTION_CONFIG.minCorrect) {
-        if (profession === 'student') {
+        if (profession === "student") {
           return <Svg pathname={pathname} />;
         } else {
           if (storedValue?.quiz) {
@@ -81,4 +81,12 @@ export default function Home() {
       }
     }
   }
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
+  );
 }
