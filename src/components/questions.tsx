@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { Button, Radio } from 'antd';
-import { useMemo, useState } from 'react';
-import seedrandom from 'seedrandom';
+import { Button, Radio } from "antd";
+import { useMemo, useState } from "react";
+import seedrandom from "seedrandom";
 
-import questions from '../lib/questions.json';
-import { QUESTION_CONFIG } from '@/lib/constant';
-import { toast } from 'sonner';
+import questions from "../lib/questions.json";
+import { QUESTION_CONFIG } from "@/lib/constant";
+import { toast } from "sonner";
 
 interface Question {
   question: string;
@@ -36,7 +36,7 @@ function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
   const dayOfYear = new Date(
     date.getFullYear(),
     date.getMonth(),
-    date.getDate()
+    date.getDate(),
   ).getTime();
 
   const rng = seedrandom(`${dayOfYear}`);
@@ -45,18 +45,18 @@ function selectQuestionsForDay(questions: Question[], date: Date): Question[] {
   return [
     ...shuffled,
     {
-      question: 'What does the acronym REEdI stand for?',
+      question: "What does the acronym REEdI stand for?",
       answerOptions: [
         {
-          answer: 'Realigning Engineering Education in Ireland',
+          answer: "Realigning Engineering Education in Ireland",
           isCorrect: true,
         },
         {
-          answer: 'Rethinking Engineering Education in Ireland',
+          answer: "Rethinking Engineering Education in Ireland",
           isCorrect: true,
         },
         {
-          answer: 'Reimagining Engineering Education in Ireland',
+          answer: "Reimagining Engineering Education in Ireland",
           isCorrect: true,
         },
       ],
@@ -82,7 +82,7 @@ export function Questions({
 
   const selectedQs = useMemo(
     () => selectQuestionsForDay(questions, new Date()),
-    []
+    [],
   );
 
   const handlePrevious = () => {
@@ -97,24 +97,27 @@ export function Questions({
 
   const handleOptions = (event: any) => {
     const { value } = event.target;
-    setSelected([(selected[currentQ] = { answerByUser: value })]);
-    setSelected([...selected]);
+    setSelected((prev: any) => {
+      const next = [...prev];
+      next[currentQ] = { answerByUser: value };
+      return next;
+    });
   };
 
   const handleSubmit = () => {
     const newScore = selectedQs.reduce((score, question, index): any => {
       const selectedAnswer = selected[index]?.answerByUser;
       const isCorrect = question.answerOptions.some(
-        (answer) => answer.isCorrect && answer.answer === selectedAnswer
+        (answer) => answer.isCorrect && answer.answer === selectedAnswer,
       );
       return score + (isCorrect ? 1 : 0);
     }, 0);
 
     if (
       newScore >= QUESTION_CONFIG.minCorrect &&
-      (profession === 'student' || isStored)
+      (profession === "student" || isStored)
     ) {
-      toast.success('Thank you for your participation. Have a nice day!');
+      toast.success("Thank you for your participation. Have a nice day!");
     }
 
     setScore(newScore);
