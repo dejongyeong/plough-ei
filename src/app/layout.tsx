@@ -1,25 +1,24 @@
-import Image from 'next/image';
-import Providers from './providers';
+import Image from "next/image";
+import Providers from "./providers";
 
-import './globals.css';
+import "./globals.css";
 
 export const metadata = {
-  title: 'Ploughing EI',
-  description: 'Ploughing EI MCQ Application',
+  title: "Ploughing EI",
+  description: "Ploughing EI MCQ Application",
   authors: [
     {
-      name: 'De Jong Yeong',
-      url: 'https://www.linkedin.com/in/de-jong-yeong/',
+      name: "De Jong Yeong",
+      url: "https://www.linkedin.com/in/de-jong-yeong/",
     },
   ],
-  creator: 'De Jong Yeong',
-  icons: { icon: '/favicon.ico' },
-  manifest: '/manifest.json',
-  themeColor: '#ffffff',
+  creator: "De Jong Yeong",
+  icons: { icon: "/favicon.ico" },
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'default',
-    title: 'Ploughing EI',
+    statusBarStyle: "default",
+    title: "Ploughing EI",
   },
 };
 

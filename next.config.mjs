@@ -1,19 +1,18 @@
-const withPWA = require('@ducanh2912/next-pwa').default({
-  dest: 'public',
+import nextPWA from "@ducanh2912/next-pwa";
+
+const withPWA = nextPWA({
+  dest: "public",
   register: true,
   skipWaiting: true,
   cacheOnFrontEndNav: false,
-  disable: process.env.NODE_ENV === 'development',
+  disable: process.env.NODE_ENV === "development",
 });
 
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = withPWA({
   reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    serverActions: true,
-    appDir: true,
-  },
+  experimental: {},
+  turbopack: {},
 });
 
-module.exports = nextConfig;
+export default nextConfig;

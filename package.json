@@ -2,6 +2,7 @@
   "name": "plough-ei",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
@@ -11,17 +12,19 @@
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
     "@ducanh2912/next-pwa": "^10.2.9",
+    "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
-    "@types/node": "25.0.10",
     "@types/react": "19.2.9",
     "@types/react-dom": "19.2.3",
     "antd": "^6.2.1",
     "autoprefixer": "10.4.23",
+    "dotenv": "^17.2.3",
     "eslint": "9.39.2",
     "eslint-config-next": "^16.1.4",
     "luxon": "^3.7.2",
     "next": "16.1.4",
     "next-qrcode": "^2.5.1",
+    "pg": "^8.17.2",
     "postcss": "^8.5.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -33,7 +36,10 @@
     "yup": "^1.7.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/luxon": "^3.7.1",
+    "@types/node": "25.0.10",
+    "@types/pg": "^8.16.0",
     "@types/seedrandom": "^3.0.8",
     "prisma": "^7.3.0"
   }

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Typography } from 'antd';
-import { Button, Form, Radio, Space } from 'antd';
-import type { RadioChangeEvent } from 'antd';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Typography } from "antd";
+import { Button, Form, Radio, Space } from "antd";
+import type { RadioChangeEvent } from "antd";
+import { Dispatch, SetStateAction, useState } from "react";
 
 const { Title, Text } = Typography;
 
@@ -29,11 +29,11 @@ export function Welcome({ setProfession }: WelcomeProps) {
         <Form name="welcome" layout="vertical">
           <Form.Item label="I am a:" name="job" required>
             <Radio.Group value={value} onChange={onChange}>
-              <Space direction="vertical">
-                <Radio value={'student'}>
+              <Space orientation="vertical">
+                <Radio value={"student"}>
                   Primary or Secondary School Student
                 </Radio>
-                <Radio value={'profession'}>
+                <Radio value={"profession"}>
                   Third-Level Student or Professional
                 </Radio>
               </Space>

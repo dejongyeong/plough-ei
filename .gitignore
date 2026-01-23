@@ -48,3 +48,4 @@ public/fallback-*.js
 public/fallback-*.js.map
 public/precache.*.*.js
 public/precache.*.*.js.map
+/generated/prisma
