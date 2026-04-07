@@ -41,6 +41,6 @@
     "@types/node": "25.0.10",
     "@types/pg": "^8.16.0",
     "@types/seedrandom": "^3.0.8",
-    "prisma": "^7.3.0"
+    "prisma": "^7.6.0"
   }
 }
